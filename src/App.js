@@ -5,24 +5,27 @@ const qoutesBox = [
   {
     qoute:
       "If you do what you've always done, you'll get what you've always gotten.",
-    autohor: "Tony Robbins"
+    author: "Tony Robbins"
   },
   {
     qoute:
       "I am thankful for all of those who said NO to me. It's because of them I'm doing it myself. ",
-    autohor: "Albert Einstein"
+    author: "Albert Einstein"
   },
   {
     qoute:
       "If you hate your life, it will hate you back. If you love your life, it will love you back.",
-    autohor: "Darrick Williams"
+    author: "Darrick Williams"
   },
   {
     qoute:
       "I'm a believer. I believe in the goodness of life. I believe in the brotherhood of mankind. I believe in humanity.",
-    autohor: "Nurudeen Ushawu"
+    author: "Nurudeen Ushawu"
   },
-  { qoute: "Once you choose hope, anything’s possible." }
+  {
+    qoute: "Once you choose hope, anything’s possible.",
+    author: "Christopher Reeve"
+  }
 ];
 
 let random = 0;
@@ -36,10 +39,11 @@ class QuoteBox extends React.Component {
     this.randomizer = this.randomizer.bind(this);
   }
   randomizer() {
-    random = Math.floor(Math.random() * 4 + 1);
+    random = Math.floor(Math.random() * 5);
     console.log(random);
     this.setState({
-      quotes: qoutesBox[random].qoute
+      quotes: qoutesBox[random].qoute,
+      author: qoutesBox[random].author
     });
   }
   componentDidMount() {
@@ -50,7 +54,7 @@ class QuoteBox extends React.Component {
     return (
       <div>
         <div id="text">{this.state.quotes}</div>
-        <div id="author">Mone</div>
+        <div id="author">{this.state.author}</div>
         <button id="new-quote" onClick={this.randomizer}>
           Next
         </button>
