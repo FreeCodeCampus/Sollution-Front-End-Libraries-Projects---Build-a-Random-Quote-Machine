@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 const qoutesBox = [
@@ -34,13 +33,17 @@ class QuoteBox extends React.Component {
     this.state = {
       quotes: ""
     };
+    this.randomizer = this.randomizer.bind(this);
   }
-
-  componentDidMount() {
+  randomizer() {
     random = Math.floor(Math.random() * 4 + 1);
+    console.log(random);
     this.setState({
       quotes: qoutesBox[random].qoute
     });
+  }
+  componentDidMount() {
+    this.randomizer();
   }
 
   render() {
@@ -48,7 +51,9 @@ class QuoteBox extends React.Component {
       <div>
         <div id="text">{this.state.quotes}</div>
         <div id="author">Mone</div>
-        <button id="new-quote">Next</button>
+        <button id="new-quote" onClick={this.randomizer}>
+          Next
+        </button>
         <a id="tweet-quote">Tweet</a>
       </div>
     );
