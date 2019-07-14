@@ -1,5 +1,4 @@
-import React from "react";
-import "./App.css";
+import React, { useState, useEffect } from "react";
 
 const qoutesBox = [
   {
@@ -30,41 +29,34 @@ const qoutesBox = [
 
 let random = 0;
 
-class QuoteBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      quotes: ""
-    };
-    this.randomizer = this.randomizer.bind(this);
-  }
-  randomizer() {
+const QuoteBox = () => {
+  const [quotes, setQuote] = useState();
+  const [authors, setAuthor] = useState();
+
+  const randomizer = () => {
     random = Math.floor(Math.random() * 5);
     console.log(random);
-    this.setState({
-      quotes: qoutesBox[random].qoute,
-      author: qoutesBox[random].author
-    });
-  }
-  componentDidMount() {
-    this.randomizer();
-  }
+    setQuote(qoutesBox[random].qoute);
+    setAuthor(qoutesBox[random].author);
+  };
 
-  render() {
-    return (
-      <div>
-        <div id="text">{this.state.quotes}</div>
-        <div id="author">{this.state.author}</div>
-        <button id="new-quote" onClick={this.randomizer}>
-          Next
-        </button>
-        <a id="tweet-quote" href={"https://www.twitter.com/intent/tweet"}>
-          Tweet
-        </a>
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    randomizer();
+  }, []);
+
+  return (
+    <div>
+      <div id="text">{quotes}</div>
+      <div id="author">{authors}</div>
+      <button id="new-quote" onClick={randomizer}>
+        Next
+      </button>
+      <a id="tweet-quote" href={"https://www.twitter.com/intent/tweet"}>
+        Tweet
+      </a>
+    </div>
+  );
+};
 
 function App() {
   return (
