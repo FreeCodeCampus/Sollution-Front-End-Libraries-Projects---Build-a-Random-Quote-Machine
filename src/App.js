@@ -54,7 +54,9 @@ class QuoteBox extends React.Component {
         <button id="new-quote" onClick={this.randomizer}>
           Next
         </button>
-        <a id="tweet-quote">Tweet</a>
+        <a id="tweet-quote" href={"https://www.twitter.com/intent/tweet"}>
+          Tweet
+        </a>
       </div>
     );
   }
